@@ -120,9 +120,11 @@
     var roomID="6"; // hard coded for now for the room that we want (room 5 is room id 6)
     var availableDays=<? echo $daysInMonth ?>; //starting how many days in the month (will be changed by showAvailability
     var selectedDays=[]; //array of ordered days elements
-   
     
-    var jqxhr = $.getJSON("https://demo14.secure.retreat.guru/api/v1/registrations?token=ef061e1a717568ee5ca5c76a94cf5842", function(data) {
+    var jsonFileURL="https://demo14.secure.retreat.guru/api/v1/registrations?token=ef061e1a717568ee5ca5c76a94cf5842";
+    var jsonTestFile="https://www.ka-gold-jewelry.com/tests/retreat-guru/json-tests/tests.json";
+    
+    var jqxhr = $.getJSON(jsonFileURL, function(data) {
         registrations=data;
         showAvailability(false);
     })
@@ -134,6 +136,7 @@
     $('#pendingSwitch').change(function() {
       //console.log('Toggle: ' + $(this).prop('checked'));     
       showAvailability($(this).prop('checked'));
+      //cleanAllCells();
     });
  
     </script>

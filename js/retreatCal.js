@@ -11,7 +11,8 @@ function showAvailability(onlyPending){
         {
             if ($("#"+registrations[i]["start_date"]).data( "selected"))
             {
-               $("#"+registrations[i]["start_date"]).addClass("registeredCallendarCellDouble");                                         
+               if (!$("#"+registrations[i]["start_date"]).hasClass("registeredCallendarCellDouble"))
+                    $("#"+registrations[i]["start_date"]).addClass("registeredCallendarCellDouble");                                         
                $("#"+registrations[i]["start_date"]).attr( "data-toggle", "tooltip");   
                $("#"+registrations[i]["start_date"]).attr( "data-placement", "top");   
                $("#"+registrations[i]["start_date"]).attr( "title",$("#"+registrations[i]["start_date"]).attr("title")+"+"+registrations[i]["full_name"]);
@@ -22,7 +23,7 @@ function showAvailability(onlyPending){
               $("#"+registrations[i]["start_date"]).data( "selected", true);   
               $("#"+registrations[i]["start_date"]).attr( "data-toggle", "tooltip");   
               $("#"+registrations[i]["start_date"]).attr( "data-placement", "top");   
-              $("#"+registrations[i]["start_date"]).attr( "title",registrations[i]["full_name"]); 
+              $("#"+registrations[i]["start_date"]).attr( "title",registrations[i]["full_name"]);
               availableDays=availableDays-1;
               selectedDays.push($("#"+registrations[i]["start_date"]));
             }
@@ -50,7 +51,11 @@ function showAvailability(onlyPending){
              {
                 if ($("#"+nextDay).data( "selected"))
                 {
-                   $("#"+nextDay).addClass("registeredCallendarCellDouble");                                         
+                   if (!$("#"+nextDay).hasClass("registeredCallendarCellDouble")) 
+                        $("#"+nextDay).addClass("registeredCallendarCellDouble");                                         
+                   $("#"+nextDay).attr( "data-toggle", "tooltip");   
+                   $("#"+nextDay).attr( "data-placement", "top");   
+                   $("#"+nextDay).attr( "title",$("#"+nextDay).attr("title")+"+"+registrations[i]["full_name"]);
                 }
                 else
                 {
@@ -58,7 +63,7 @@ function showAvailability(onlyPending){
                   $("#"+nextDay).data( "selected", true);
                   $("#"+nextDay).attr( "data-toggle", "tooltip");   
                   $("#"+nextDay).attr( "data-placement", "top");   
-                  $("#"+nextDay).attr( "title",registrations[i]["full_name"]); 
+                  $("#"+nextDay).attr( "title",registrations[i]["full_name"]);
                   availableDays=availableDays-1;
                   selectedDays.push($("#"+nextDay));
                 }
@@ -78,14 +83,15 @@ function showAvailability(onlyPending){
 function cleanAllCells()
 {
     for (var i = 0, len = selectedDays.length; i < len; i++) 
-    { 
+    {         
         var cellToRemove=selectedDays.pop();
+        //console.log(cellToRemove);
         cellToRemove.removeClass( "registeredCallendarCell registeredCallendarCellDouble" );
         cellToRemove.data( "selected", false);
-        cellToRemove.attr( "data-toggle", "");   
-        cellToRemove.attr( "data-placement", "");   
-        cellToRemove.attr( "title",""); 
-        availableDays=availableDays+1;        
+        cellToRemove.removeAttr("data-toggle");   
+        cellToRemove.removeAttr("data-placement");   
+        cellToRemove.removeAttr("title");
+        cellToRemove.tooltip('dispose');
+        availableDays=availableDays+1;       
     }
-
 }
