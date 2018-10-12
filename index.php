@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Retreat Availability Calendar</title>
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/retreatCal.css" rel="stylesheet">
     
   </head>
@@ -110,8 +110,8 @@
     
     <br><br>
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="js/retreatCal.js"></script>
 
@@ -132,7 +132,7 @@
 
     //--switch between pending only and all
     $('#pendingSwitch').change(function() {
-      console.log('Toggle: ' + $(this).prop('checked'));     
+      //console.log('Toggle: ' + $(this).prop('checked'));     
       showAvailability($(this).prop('checked'));
     });
  
